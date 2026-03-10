@@ -1,0 +1,11 @@
+fastmcp>=2.14.3
+httpx>=0.28.1
+langchain>=1.2.6
+langchain-community>=0.4.1
+langchain-core>=1.2.7
+langchain-mcp-adapters>=0.2.1
+langchain-openai>=1.1.7
+langgraph>=1.0.6
+mcp>=1.25.0
+psycopg2-binary>=2.9.11
+python-dotenv>=1.2.1
