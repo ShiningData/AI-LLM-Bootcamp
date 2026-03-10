@@ -1,0 +1,28 @@
+from dotenv import load_dotenv
+from langchain.chat_models import init_chat_model
+from langchain.messages import HumanMessage, AIMessage, SystemMessage
+
+load_dotenv()
+
+model = init_chat_model(
+    "google_genai:gemini-2.5-flash-lite",
+    # Kwargs passed to the model:
+    temperature=0.1,
+    timeout=30,
+    max_tokens=1000,
+    # max_retries, api_key
+
+    )
+
+# return the final output for the entire batch
+responses = model.batch([
+    "Why do parrots have colorful feathers?",
+    "How do airplanes fly?",
+    "What is quantum computing?"
+],
+config={
+        'max_concurrency': 5,  # Limit to 5 parallel calls
+        # See the RunnableConfig reference for a full list of supported attributes.
+    })
+for response in responses:
+    print(response)
