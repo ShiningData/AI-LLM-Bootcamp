@@ -1,0 +1,338 @@
+# Week 5 Reference Answer â€” PostgreSQL Database Storage with SQLModel
+
+> Sample solution for Python 3.12, `langchain==1.2.0`, OpenAI GPT-4o-mini. Results are stored in PostgreSQL database using SQLModel with JSON entities column.
+
+## Init uv project
+```
+uv init -p 3.12 --name week05_answer --description "AI LLM Bootcamp Week05 answer with uv" week05_answer
+
+cd week05_answer
+```
+
+## Create main module
+```
+touch main.py
+echo "OPENAI_API_KEY=your-openai-api-key-here" >> .env
+echo "DATABASE_URL=postgresql://train:Ankara06@localhost:5432/langgraph_db" >> .env
+touch requirements.txt
+```
+
+## File Tree
+```
+.
+â”œâ”€â”€ main.py
+â”œâ”€â”€ .env.example
+â””â”€â”€ requirements.txt
+```
+
+### requirements.txt
+```
+langchain==1.2.0
+langchain-openai
+sqlmodel
+psycopg2-binary
+pydantic==2.*
+python-dotenv
+pandas
+```
+
+### .env.example
+```
+OPENAI_API_KEY=your_openai_api_key_here
+DATABASE_URL=postgresql://train:Ankara06@localhost:5432/langgraph_db
+```
+
+## Start PostgreSQL Database
+```bash
+docker run -d --rm --name postgres-langgraph -e POSTGRES_USER=train -e POSTGRES_PASSWORD=Ankara06 -e POSTGRES_DB=langgraph_db -p 5432:5432 postgres:16
+```
+
+## Install requirements
+```
+uv add -r requirements.txt
+```
+
+## `main.py` (Complete Working Implementation)
+```python
+import os, sys, json, time, logging, re
+from uuid import uuid4
+from typing import Optional, Literal, Any
+from datetime import datetime
+
+import pandas as pd
+from dotenv import load_dotenv
+from sqlmodel import SQLModel, Field, create_engine, Session, Column
+from sqlalchemy import JSON
+from pydantic import BaseModel
+
+from langchain.chat_models import init_chat_model
+from langchain.agents import create_agent
+from langchain.agents.structured_output import ToolStrategy
+
+load_dotenv()  # load OPENAI_API_KEY and DATABASE_URL
+
+# === MODELS ===
+# Pydantic models for LLM structured output
+class Entities(BaseModel):
+    amount: Optional[float] = Field(default=None, description="Numeric amount, e.g., 49.99")
+    invoice_period: Optional[str] = None
+    ticket_id: Optional[str] = None
+    device: Optional[str] = None
+    address_move: Optional[bool] = None
+
+class TicketExtraction(BaseModel):
+    issue_type: Literal["billing","technical","account","general"]
+    urgency: Literal["low","medium","high"]
+    channel: Literal["phone","email","chat","unknown"]
+    entities: Entities
+    summary: str
+    status_suggestion: Literal["open","in_progress","resolved"]
+
+# SQLModel class for database storage - single table
+class TicketExtractionDB(SQLModel, table=True):
+    __tablename__ = "ticket_extractions"
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    run_id: str = Field(index=True)
+    source_id: str = Field(index=True)
+    issue_type: str
+    urgency: str
+    channel: str
+    summary: str
+    status_suggestion: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    # Entity fields as JSON - only stores non-null values
+    entities: dict = Field(default_factory=dict, sa_column=Column(JSON))
+
+# === DATABASE ===
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://train:Ankara06@localhost:5432/langgraph_db")
+engine = create_engine(DATABASE_URL)
+
+def create_tables():
+    """Create database tables"""
+    SQLModel.metadata.create_all(engine)
+
+# === LLM AGENT ===
+SYSTEM = (
+    "You are a strict information extractor. "
+    "Return JSON with EXACTLY these keys: "
+    "issue_type, urgency, channel, entities, summary, status_suggestion. "
+    "Allowed enums: "
+    "issue_type: {{billing, technical, account, general}}; "
+    "urgency: {{low, medium, high}}; "
+    "channel: {{phone, email, chat, unknown}}; "
+    "status_suggestion: {{open, in_progress, resolved}}. "
+    "entities must contain: amount (number|null), invoice_period (string|null), "
+    "ticket_id (string|null), device (string|null), address_move (boolean|null). "
+    "If something is unknown, use null for nested fields or pick the closest enum at the top level. "
+    "Do NOT add extra fields. Return JSON only."
+)
+
+llm = init_chat_model(model="gpt-4o-mini", model_provider="openai")
+agent = create_agent(model=llm, response_format=ToolStrategy(TicketExtraction), system_prompt=SYSTEM)
+
+def _normalize_amount_like(value: Any):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        m = re.search(r"[-+]?\d+(?:\.\d+)?", value.replace(",", ""))
+        return float(m.group(0)) if m else None
+    return None
+
+def extract_ticket(ticket_text: str) -> TicketExtraction:
+    result = agent.invoke({"messages": [{"role": "user", "content": ticket_text}]})
+    
+    # Extract the structured response from agent output
+    if isinstance(result, dict) and "structured_response" in result:
+        result = result["structured_response"]
+    
+    # Ensure we have a TicketExtraction object
+    if not isinstance(result, TicketExtraction):
+        if isinstance(result, dict):
+            result = TicketExtraction(**result)
+        else:
+            raise ValueError(f"Unexpected result type: {type(result)}")
+    
+    result.entities.amount = _normalize_amount_like(result.entities.amount)
+    return result
+
+# === LOGGING ===
+logger = logging.getLogger("week05")
+logger.setLevel(logging.INFO)
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(logging.INFO)
+formatter = logging.Formatter("[%(asctime)s] %(levelname)s - %(message)s", "%Y-%m-%d %H:%M:%S")
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
+# === DATABASE OPERATIONS ===
+def save_to_database(session: Session, extraction_result: TicketExtraction, run_id: str, source_id: str):
+    """Save extraction result to database using SQLModel"""
+    # Create entities dict with only non-null values
+    entities_data = {}
+    if extraction_result.entities.amount is not None:
+        entities_data["amount"] = extraction_result.entities.amount
+    if extraction_result.entities.invoice_period is not None:
+        entities_data["invoice_period"] = extraction_result.entities.invoice_period
+    if extraction_result.entities.ticket_id is not None:
+        entities_data["ticket_id"] = extraction_result.entities.ticket_id
+    if extraction_result.entities.device is not None:
+        entities_data["device"] = extraction_result.entities.device
+    if extraction_result.entities.address_move is not None:
+        entities_data["address_move"] = extraction_result.entities.address_move
+    
+    # Create single record with entities as JSON
+    ticket_db = TicketExtractionDB(
+        run_id=run_id,
+        source_id=source_id,
+        issue_type=extraction_result.issue_type,
+        urgency=extraction_result.urgency,
+        channel=extraction_result.channel,
+        summary=extraction_result.summary,
+        status_suggestion=extraction_result.status_suggestion,
+        entities=entities_data
+    )
+    
+    session.add(ticket_db)
+    session.commit()
+    session.refresh(ticket_db)
+    
+    return ticket_db.id
+
+# === MAIN ===
+def main():
+    if len(sys.argv) < 2:
+        logger.error("Usage: python main.py /path/to/support_tickets_minimal.csv")
+        sys.exit(1)
+
+    csv_path = sys.argv[1]
+    df = pd.read_csv(csv_path)
+
+    if not {"user_id", "sikayet"}.issubset(df.columns):
+        logger.error(f"Expected columns user_id and sikayet. Found: {list(df.columns)}")
+        sys.exit(1)
+
+    # Create database tables
+    create_tables()
+    logger.info("Database tables created/verified")
+
+    run_id = str(uuid4())
+    max_retries = 2
+
+    with Session(engine) as session:
+        for _, row in df.iterrows():
+            source_id = str(row["user_id"])
+            ticket_text = str(row["sikayet"])
+
+            attempts = 0
+            while True:
+                try:
+                    result = extract_ticket(ticket_text)
+                    
+                    # Save to database
+                    db_id = save_to_database(session, result, run_id, source_id)
+                    
+                    # Log to console for monitoring
+                    payload = result.model_dump()
+                    logger.info("row %s (DB ID: %s): %s", source_id, db_id, json.dumps(payload, ensure_ascii=False))
+                    break
+                    
+                except Exception as e:
+                    session.rollback()  # Rollback on error
+                    if attempts >= max_retries:
+                        logger.error("row %s failed permanently: %s", source_id, e)
+                        break
+                    attempts += 1
+                    logger.warning("row %s failed (attempt %d), retrying: %s", source_id, attempts, e)
+                    time.sleep(1.5 ** attempts)
+
+    logger.info("Done. All records saved to PostgreSQL database")
+
+if __name__ == "__main__":
+    main()
+```
+
+---
+
+## How to Run
+```bash
+# Start PostgreSQL database
+docker run -d --rm --name postgres-langgraph -e POSTGRES_USER=train -e POSTGRES_PASSWORD=Ankara06 -e POSTGRES_DB=langgraph_db -p 5432:5432 postgres:16
+
+# Setup environment
+cp .env.example .env  # then fill OPENAI_API_KEY and DATABASE_URL
+
+# Execute
+uv run python main.py support_tickets_minimal.csv
+```
+
+## Database Verification Queries
+
+After running the extraction, you can verify the data in PostgreSQL:
+
+```sql
+-- Connect to database
+docker exec -it postgres-langgraph psql -U train -d langgraph_db
+
+-- Check total records
+SELECT COUNT(*) FROM ticket_extractions;
+
+-- View all extractions with JSON entities
+SELECT 
+    id,
+    run_id,
+    source_id,
+    issue_type,
+    urgency,
+    channel,
+    summary,
+    status_suggestion,
+    entities,
+    created_at
+FROM ticket_extractions
+ORDER BY created_at DESC;
+
+-- Count by issue type
+SELECT issue_type, COUNT(*) 
+FROM ticket_extractions 
+GROUP BY issue_type 
+ORDER BY COUNT(*) DESC;
+
+-- Count by urgency
+SELECT urgency, COUNT(*) 
+FROM ticket_extractions 
+GROUP BY urgency 
+ORDER BY COUNT(*) DESC;
+
+-- Records with amounts (JSON query)
+SELECT source_id, summary, entities->>'amount' as amount 
+FROM ticket_extractions 
+WHERE entities->>'amount' IS NOT NULL
+ORDER BY (entities->>'amount')::numeric DESC;
+
+-- Records with devices (JSON query)
+SELECT source_id, summary, entities->>'device' as device 
+FROM ticket_extractions 
+WHERE entities->>'device' IS NOT NULL;
+```
+
+## Sample Database Output
+```
+id|run_id                              |source_id|issue_type|urgency|channel|summary                                       |status_suggestion|created_at             |entities                    |
+--+------------------------------------+---------+----------+-------+-------+----------------------------------------------+-----------------+-----------------------+----------------------------+
+ 1|b8b772ae-d459-4ad2-a9b9-a09602b6e502|CUST-001 |billing   |high   |phone  |Faturamda 200 TL fazla Ã¼cret var            |open             |2025-12-31 02:45:54.796|{"amount": 200.0}           |
+ 2|b8b772ae-d459-4ad2-a9b9-a09602b6e502|CUST-002 |technical |high   |chat   |Uygulama aÃ§Ä±lÄ±r aÃ§Ä±lmaz Ã§Ã¶kÃ¼yor              |open             |2025-12-31 02:45:57.383|{}                          |
+ 4|b8b772ae-d459-4ad2-a9b9-a09602b6e502|CUST-004 |technical |high   |unknown|Internet Ã§ok yavaÅŸ, modem resetlendi         |open             |2025-12-31 02:46:03.823|{"device": "modem"}         |
+ 7|b8b772ae-d459-4ad2-a9b9-a09602b6e502|CUST-007 |technical |high   |unknown|Mobil uygulamada yetkisiz hatasÄ±             |open             |2025-12-31 02:46:14.045|{"device": "mobil uygulama"}|
+```
+
+**Key Features:**
+- Uses `init_chat_model` and `create_agent` with LangChain 1.2.0
+- OpenAI GPT-4o-mini for cost-effective structured output
+- SQLModel with single table design and PostgreSQL JSON column
+- Only stores non-null entity values for efficient storage
+- PostgreSQL native JSON querying capabilities for flexible data analysis
+- Proper error handling, transaction management, and retry logic
