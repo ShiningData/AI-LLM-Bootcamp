@@ -1,0 +1,43 @@
+services:
+  postgres:
+      container_name: postgresql
+      image: postgres:15
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=Ankara06
+        - POSTGRES_DB=traindb
+      ports:
+        - "5432:5432"
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+        #- ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      restart: unless-stopped
+  fastapi:
+    container_name: fastapi
+    build: ./fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./fastapi:/app
+  
+  ui:
+    container_name: streamlit-ui
+    build: ./ui
+    ports:
+      - "8501:8501"
+    depends_on:
+      - fastapi
+
+  vectordb:
+    container_name: vectordb
+    image:  qdrant/qdrant
+    volumes:
+      - vectordb_data:/qdrant/storage:z
+    ports:
+      - 6333:6333
+      - 6334:6334
+volumes:
+  postgres_data:
+  vectordb_data:

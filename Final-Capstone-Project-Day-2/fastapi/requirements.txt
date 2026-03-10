@@ -1,0 +1,15 @@
+langchain==1.2.0
+python-dotenv==1.2.1
+sqlmodel>=0.0.14
+psycopg2-binary==2.9.11
+langgraph-checkpoint-postgres==3.0.2
+langchain-qdrant
+langchain-community==0.4.1
+langchain-text-splitters==1.1.0
+bs4==0.0.2
+pypdf
+unstructured
+langchain-openai
+langchain-mcp-adapters
+fastapi
+uvicorn

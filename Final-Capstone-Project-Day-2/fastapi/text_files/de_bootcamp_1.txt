@@ -1,0 +1,152 @@
+Data Engineering Bootcamp
+Veri Mühendisliği Nedir?
+Veri mühendisliği; verinin istenilen yer, zaman, format, doğruluk ve tutarlılıkta hazır edilmesini sağlayan sistemin tasarım, inşa ve idamesini sağlayan bir disiplindir. Bu veriye işletme çalışanlarının (iç müşteri) ihtiyacı olabileceği gibi, işletme dışı müşterilerin (dış müşteriler) de ihtiyacı olabilir.
+
+Veri Mühendisinin Görevi Nedir?  
+Yukarıda belirtilen özellikteki verinin hazırlanmasını sağlayan rol ise Data Engineer (Veri Mühendisi) rolüdür. Verinin baş döndürücü artışıyla beraber veri bazlı yeni, özgün ürünler geliştirme, hizmet farklılaştırması, operasyonel iyileştirme gibi birçok fırsatlar doğmuş ve veriye dayalı devasa ekonomiler oluşmuştur. Ancak bu fırsatları yakalamanın en önemli adımı veriden değer elde etmektir. Bu değerde en büyük emek Data Engineer’e aittir.
+
+Şirketi insan vücuduna, birimleri de vücudun organlarına benzetirsek Data Engineer ekipleri ilgili organa ihtiyaç duyduğu kanı/besini ulaştıran ekiptir. Vücuttaki organlar gibi ihtiyaç duydukları veriye zamanında ulaşamayan birimler işlevini tam olarak yerine getiremeyecektir. Buradaki birimlere örnek olarak veri bilimi, veri analizi, insan kaynakları, iş zekası vb. verebiliriz.
+
+Bugün Kayıt Ol!
+İndirim
+
+Bireysel
+Temizle
+54.000₺
+Orijinal fiyat: 54.000₺.
+32.400₺
+Şu andaki fiyat: 32.400₺.
+Data Engineering Bootcamp adet
+25.920₺ – 32.400₺Fiyat aralığı: 25.920₺ - 32.400₺
+
+14. Dönem
+11 Mart 2026 - 11 Temmuz 2026
+Pakete Neler Dahil
+Kampanya&İndirim
+%100 Canlı Dersler
+Canlı Mentor Desteği
+Sertifika
+Canlı derslerin video kayıtlarına 1 yıl süreyle erişim
+Formu doldurun
+Sizi arayalım!
+
+
+
+Bootcamp İçeriği
+Tüm eğitimlerimiz, konunun tüm yönlerini ele alarak kapsamlı bir şekilde hazırlanmıştır. 
+
+1. Hafta
+Linux Basic, Bash Script (Ön hazırlık)
+Git Basic (Ön hazırlık)
+Crontab (Ön hazırlık)
+Bonus: Azure Data Engineering Intro
+
+2. Hafta
+Postgresql & SQL Basics (Ön hazırlık)
+Docker & Kubernetes (Ön hazırlık)
+Python Programming (Ön hazırlık)
+Bonus: Airflow MCP Server DAG Management
+
+3. Hafta
+Introduction to Data Engineering
+Introduction to Big Data
+Apache Hadoop HDFS
+Apache Hadoop YARN
+Apache Hadoop MapReduce
+Setting-up working environment
+Setting up multi-node Hadoop cluster on Docker
+Basic HDFS operations
+YARN Resource Manager
+MapReduce Demo (Dried fruits WordCount)
+Bonus: Block, File, and Object Storage
+4. Hafta
+Hive Intro
+Hadoop file formats and compression
+Querying big data
+Hive connection, database, and creating  tables in different ways
+Creating external tables in Hive and AWS Athena
+Bonus: Database CRUD Operations with Python
+5. Hafta
+Hive partitioning and bucketing
+Apache Sqoop
+Introduction to Apache Kafka
+Multinode Kafka setup with Docker
+Apache Kafka topics
+Console producer and consumer
+Bonus: Python Tests (Unit, Integration etc.)
+6. Hafta
+Kafka consumer groups
+Data Generator: Stream your datasets
+Create a Producer with Python
+Create a Consumer with Python
+Kafka Python Admin Client
+Bonus: Change Data Capture with Debezium and Kafka Connect
+7. Hafta
+Data transformations with Spark Dataframe and Spark SQL
+Built-in data sources (Parquet, Avro, JSON, CSV, ORC)
+Bonus: Query big data with Trino
+8. Hafta
+Spark integration with external data sources (PostgreSQL,  MinIO, AWS S3)
+Spark cluster managers (YARN, Standalone, Kubernetes)
+Submit Spark applications
+Bonus: SQL window functions
+9. Hafta
+Spark optimizations
+Spark Streaming Intro
+Spark Streaming file source & sink
+Bonus: Databricks vs Snowflake
+10. Hafta
+Spark Streaming window operations
+Spark Streaming ForEachBatch sink
+Spark Streaming Kafka source and sink
+Data Storage Architectures: DWH, Data Lake, Lakehouse
+Modern Data Management: Data Mesh, Data Fabric
+Data Reliability & Governance: Data Contracts, Schema Validation
+Open Table Formats: Delta, Iceberg, Hudi
+Bonus: Creating amazing dashboards with Apache Superset
+11. Hafta
+Introduction to Data Modeling
+Business Rules and Data Modeling
+Database Normalization
+Cardinality
+Design States/Phases
+Conceptual Data Modeling
+Logical Data Modeling
+Physical Data Modeling
+Modeling for Data Warehouse
+Dimensional Modeling
+Tools for Data Modeling
+Bonus: DBT
+12. Hafta
+Introduction to Airflow
+Airflow Dummy, Bash Operators
+Airflow PythonOperator
+Airflow DB Connection
+SQLExecuteQueryOperator
+Airflow SSHConnection
+Bonus: Clickhouse
+13. Hafta
+Airflow BranchOperator
+Airflow PostgresOperator, PostgresqlHook
+Python Pandas Object storage and DB write and read
+Bonus: Big Query
+14. Hafta
+DataOps Intro
+DataOps Processes and Tools
+DataOps Implementation and Best Practices
+Bonus: Schema Registries in Streaming
+15. Hafta
+Introduction to NoSQL
+Elasticsearch
+Kibana
+Bonus: Spark ML
+16. Hafta
+Introduction to Cloud and AWS Basics
+Data Engineering on AWS
+Athena, Lambda, Glue
+Bonus: Infrastructure as Code (IaC - Terraform)
+17. Hafta
+Final Projects (self-study)
+18. Hafta
+Final Projects (self-study)
+Final Project presentations

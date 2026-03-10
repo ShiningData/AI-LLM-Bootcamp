@@ -1,0 +1,163 @@
+Eğitim Özeti
+Data engineer adayı olarak sizler de bir şeyler inşa etmek, ortaya koymak, tasarlayıp kurduğunuz veri akış hatlarından (pipelines) çıkan verinin iç veya dış müşteriler tarafından tüketildiğini görmek ve bunun keyfini yudumlamak istiyorsanız çok doğru bir adrestesiniz. Çünkü Data Engineering Bootcamp, Türkiye, Avrupa ve Amerika‘da geniş sektör deneyimine sahip bir eğitmen tarafından hazırlanan güncel içerikleriyle sizlerin en çok talep edilen yetenekleri elde etmeniz için tasarlanmıştır.
+
+Bu eğitim ile Apache Spark’ın en önemli sertifikası Databricks Certified Associate Developer for Apache Spark‘ı alma şansınızı arttırabilirsiniz.
+
+Data Engineering eğitimi 3 safhadan oluşmaktadır;
+
+1. Ön Hazırlık: Kesin kayıtla başlar, 2-4 hafta
+
+Bu aşamada canlı derslerin anlaşılmasını kolaylaştıracak eğitimler videolar üzerinden mentör ve eğitmen desteği ve rehberliğinde alınır. Örneğin canlı derste docker-compose veya SQL join kullanılacak ise ayrıca bunların ne demek olduğu için zaman kaybetmemek amaçlanmıştır.
+
+2. Kick-Off: 10 Eylül 2025
+
+Kick-Off toplantısında Data Engineering Bootcamp eğitiminin açılışı gerçekleşir. Eğitim, süreç hakkında bilgilendirmeler yapılır ve ön hazırlık eğitimlerinin ödevleri verilir.
+
+3. Canlı Dersler: 27 Eylül 2025 – 27 Aralık 2054 (DataOps-13), 14 hafta
+
+Eğitimin ana bölümüdür ve yukarıda bulunan “Bootcamp İçeriği ” başlığındaki 3-16 haftalarını, haftada 1 gün 3’er saat canlı ders + 1,5 saat ödev kontrolü / ilave ders olacak şekilde online platformlar (Zoom) üzerinden devam eder.
+
+4. Bitirme Projesi: 10 Ocak 2026, 2 hafta
+
+Canlı dersler bittikten sonra kursiyerlerin bitirme projelerini tamamladıkları ve Zoom üzerinden sundukları safhadır. Bu safhada bireysel/grup çalışması yapılır. Mentör ve eğitmen desteği devam eder.
+
+Bu eğitimde aşağıdaki soruların cevaplarını bulacağız.
+
+Data engineering dünyasında neler var? Nasıl iyi bir data engineer oluruz?
+PostgreSQL ile Hadoop/Hive’a arasında karşılıklı nasıl veri aktarımı yaparız?
+Dosya formatları ve sıkıştırma algoritmaları nelerdir? Hangisini nerede ve nasıl kullanırız?
+Birçok farklı veri kaynağından dağıtık olarak nasıl sorgulama yaparız?
+Spark ile PostgreSQL, Hive, HDFS,  Kafka, Elasticsearch, AWS S3 ve MinIO’dan nasıl veri okuruz?
+Spark ile işlenen veriyi PostgreSQL, Hive, HDFS,  Kafka, Elasticsearch, AWS S3 ve MinIO’ya nasıl yazarız?
+Spark’ı Hadoop YARN, Kubernetes, Standalone Cluster Manager ile nasıl kullanırız?
+Spark’ı Databricks üzerinde nasıl kullanırız?
+Spark uygulamasını nasıl optimize ederiz?
+Büyük veri üzerinde update ve delete mümkün mü? Nasıl yaparız?
+Büyük veri üzerinde datawarehouse kullanmak mümkün mü? Slowly changing dimensions yapılabilir mi?
+Lakehouse nedir? Datawarehouse ve Datalake’den üstün yönleri nelerdir?
+Apache Airflow ile nasıl data-pipeline oluştururuz?
+Akan veri (streaming) nasıl işlenir? Akan veri üzerinde realtime prediction nasıl yapılır?
+Change Data Capture(CDC) ile veri tabanlarındaki değişiklikleri anlık olarak yakalama ve işleme hangi araçlarla ve nasıl olur?
+Uygulamamızı nasıl konteynır haline getirebiliriz?
+Docker-compose ile canlı ortamlara yakın, gerçekçi bir geliştirme ortamını nasıl hazırlarız?
+Python ile Kafka’ya nasıl mesaj gönderebiliriz?  Kafka’dan mesajları nasıl okuyabiliriz?
+Elasticsearch  ile nasıl veri indeksleme ve arama yaparız?
+Kibana ve Superset ile nasıl görselleştirme, dashboard yaparız?
+AWS temel servisleri nelerdir? Güvenli bir şekilde nasıl hesap açar ve kullanıcı yaratırız?
+Kendi kişisel bilgisayarımızı AWS üzerinde çalışacak şekilde nasıl hazırlarız?
+AWS EC2 sanal makinesini nasıl yaratırız? Güvenlik ayarlarını nasıl yaparız?
+Python ile AWS S3’e nasıl veri yazarız? Nasıl okuruz?
+AWS üzerinde data engineer olarak neler yapabiliriz? Örnek kullanımlar nelerdir?
+Athena ile S3 üzerindeki veri setlerini nasıl sorgularız?
+AWS Lambda ile nasıl veri temizlik ve dönüştürmesi yaparız?
+
+
+Önemli Notlar:
+
+Aynı anda şu üç kriteri sağlayan katılımcılar için sertifika düzenlenecektir:
+
+1. Derslerin en az %70’ine katılma,
+
+2. Ödevlerin en az %70’ini yapma,
+
+3.Bitirme projesinden 100 üzerinden en az 70 puan alma.
+
+Öğrenciler ile paylaşılacak kaynaklar: Eğitim video kayıtları, sanal makine, sunumlar ve derste kullanılan örnek kodlar VBO Platformu üzerinden paylaşılacaktır.
+
+Bulut: Bulut kullanılan derslerde bulut maliyeti katılımcıya aittir. Çok yüksek bir bulut maliyeti beklenmemektedir. En fazla 5 USD.
+
+Eğitmen
+Eğitmenlerimiz yılların vermiş olduğu tecrübeyle sizlere bilgi aktarımı sağlamaktadır.
+
+erkan_sirin_egitmen
+
+
+
+Erkan Şirin
+Senior Data/ML Engineer, AWS Solution Architect
+Verdiği Eğitimler
+Data Engineering Bootcamp
+Data Engineering Project Bootcamp
+MLOps Bootcamp
+Kubernetes Bootcamp for Data Professionals
+MLOps VideoCamp
+AWS Cloud Data Engineering VideoCamp
+Mentörler
+mehmet_emin_kilic_site_style
+
+Mehmet Emin Kılıç
+Bilgisayar Mühendisi / Yazılım Geliştirici
+Verdiği Eğitimler
+Data 101 Bootcamp (Eğitmen)
+Data Engineering Bootcamp (Mentör)
+eyup_barkin_erkaya_mentor
+
+Eyüp Barkın Erkaya
+Data Engineer
+Verdiği Eğitimler
+Data 101 Bootcamp (Eğitmen)
+Data Engineering Bootcamp (Mentör)
+gizem_kursova_mentor
+
+Gizem Kurşova
+Data Engineer
+Verdiği Eğitimler
+Data 101 Bootcamp (Eğitmen)
+Data Engineering Bootcamp (Mentör)
+merve_oztiryaki_mentor
+
+Merve Öztiryaki
+Data Engineer
+Verdiği Eğitimler
+Data 101 Bootcamp (Eğitmen)
+Data Engineering Bootcamp (Mentör)
+MLOps Bootcamp (Mentör)
+
+
+
+Öncelik sırasına göre Data Engineer, ML Engineer ve Data Scientist rollerinde bulunanlar ile bu rollere aday olanlara yöneliktir. Ekibinde bu rollere sahip ekip liderleri de takip edebilir.
+Ayrıca sektörde yönünüzü bulmak, nereye doğru gitmek istediğinize daha sağlıklı karar vermek istiyorsanız bu eğitim sonrasında bu hususların netleşeceğini düşünüyoruz.
+PySpark
+Data Pipeline
+ETL
+Streaming
+Ön hazırlık aşaması videolar üzerinden 2-4 hafta
+Canlı eğitimler 14 hafta
+Bitirme projesi 2 hafta
+Not: Ön hazırlık aşaması kesin kayıt gerçekleşir gerçekleşmez başlar.
+Canlı eğitim: 21 Eylül 2024 – 21 Aralık 2024 (DataOps-11)
+Proje sunumları: 4 Ocak 2024, Canlı eğitimler Cumartesi günleri 10:00-13:00 saatlerinde olacaktır.
+Python bilgisi (ön hazırlıkta mevcuttur)
+Temel Docker bilgisi (ön hazırlıkta mevcuttur)
+Temel SQL ve veri tabanı bilgisine sahip olmak (ön hazırlıkta mevcuttur)
+Bootcamp, online/uzaktan olarak deneyimli bir eğitmen ve ekip tarafından verilmektedir.
+Bootcamp esnasında iş hayatında rahatlıkla kullanabileceğiniz seviyede profesyonel data engineering öğreneceksiniz.
+Türkçe olarak hiçbir online ya da sınıf eğitimlerinde bulunmayan ve sadece bootcamp katılımcılarına özgü içeriklerle gerçek hayata uygun bir süreç deneyimleyeceksiniz.
+Birlikte öğrenme ve topluluk gücünden faydalanma imkanı bulacaksınız.
+Eğitim online-canlı olarak Zoom üzerinden gerçekleştirilecektir.
+
+Yorumlar
+
+
+1715436727097
+Erhan ÜSTÜN
+Application Engineer
+Eğitimden son derece memnun kaldım, gerek mentor hocaların desteği, gerek program içeriği, gerekse müfredatın uygun zamana yayılmış olması tatmin ediciydi. Teşekkürler
+
+
+1705736026635
+Gizem Kurşova
+Data Analyst
+Data Engineering Bootcamp düşündüğümden de iyi geçti. En güzel kısmı Erkan Hocanın disiplinli olması, dokumanlarının çok iyi olmasıydı. Her ders zamanında başladı. Her ödevin içeriği derse çok uygundu. Hiçbir dönemde disiplini elden bırakmadık bu çok hoşuma gitti. Çok fazla konuda eksiğim vardı başta ama mentor hocaların desteğiyle hiç strese girmeden tamamladım. Tekrar olsa tekrar alırdım bu eğitimi her şey için teşekkür ederim.
+
+
+1706288733726
+Furkan Güleç
+Data Engineering Bootcamp-9 Mezunu
+Heyecanla paylaşmak istiyorum ki, Veri Bilimi Okulu \’nun 9. dönem Data Engineer Bootcamp\’ini başarıyla tamamladım! 🚀 4 aylık serüvene başlamadan önce acaba bu eğitimin sonuna gelip kendime değer katabilir miyim diye düşünüyordum fakat final projesini hazırlama sürecine geldiğimde, haftalık dersler ve ödevlerin beni bu aşamaya hazırlayıp final projesinin üstünden kolayca geldiğimi gördüm 💪 . Eğer Data Engineer\’lik alanında gelişmek ve bilgi sahibi olmak istiyorum fakat nasıl başlarım diyorsanız bu Bootcamp tam size göre ✨ Bu süreç boyunca birçok önemli konuyu öğrendim ve uygulamalı deneyim kazandım: · Data Engineering Concept · Hadoop HDFS, YARN, Hive · Querying Big Data – Trino · Kafka, Connect, CDC · Spark Dataframe · Spark Optimization Techniques · Spark Cluster Managers · Lakehouse and Delta Lake · Spark Streaming · Apache Airflow · NoSQL, CAP Theorem · Elasticsearch, Kibana Basic · Distributed Deep Learning · Visualization with Superset · Data Engineering en AWS Lambda, Glue, Athena, S3 Bu yoğun program boyunca aldığım bilgi ve deneyimlerle, veri mühendisliği dünyasına önemli bir adım attığımı düşünüyorum. Bu eğitimi hazırlayan Erkan SIRIN hocamıza , takıldığım noktalarda her an yardıma koşan Deniz Var Mazlum Uzunca, Seda Kayademir, Elif Sinem Aktaş mentorlerimize çok teşekkür ederim.
+
+
+ed730936-6aea-4c4e-96bd-ba1972919e1c
+Mehmet Reha Öztürk
+Data Engineer
+Herkese merhaba, benim adım Reha. Veri Bilimi Okulu 9. Dönem Data Engineering Bootcamp katılımcısıyım. Yaklaşık 3 yıldır Coğrafi Bilgi Sistemleri sektöründe coğrafi verilerin Depolanması, Analiz Edilmesi, Raporlanması ve ETL süreçlerinde yer aldım. Bu bootcamp’e katılma amacım ise diğer sektörlerde bu işlerin nasıl gittiğini anlamaktı. Bootcamp sonrasında aslında anladım ki kendi sektörüm veri operasyonları sürecinde neredeyse güncel teknolojileri hiç takip etmiyormuşuz ve oldukça gerisindeymişiz. Bu program ile gerçek bir bootcamp kavramını yaşadığımı söyleyebilirim. Veri operasyonları konusunda hemen hemen bütün genel konu başlıklarında bilgi ve fikir sahibi oldum. Genel konu başlıkları ile sınırlandırmak yetmez aslında bu kısmı biraz açmam gerekirse; Distributed File Systems, Change Data Capture, Streaming Data Processing, Batch Data Processing, Big Data, Data Warehouse gibi kavramların yanı sıra Apache Hadoop, Apache Airflow, Apache Spark, Elasticsearch, Kibana, Apache Kafka, Apache Superset, Trino, MinIO ve daha aklıma gelmeyen bir çok aracı deneyimleme şansı yakalıyorsunuz. Aslında bu kadar kısa süre de bu bahsettiklerim gerçekten mümkün değilmiş gibi gözüküyor olabilir fakat işin içine girdiğinizde zamanın nasıl geçtiğini bile anlamıyorsunuz. Zaman olarak ise iş ile birlikte paralel götürülebiliyor. Cumartesi canlı dersten sonra Pazar günü konuyu tekrar edip, ödevi yaptığınız da Perşembe günü olan ödev sunumuna kadar rahat ediyorsunuz. Cuma günü de canlı ders öncesinde işlenecek konu ile ilgili yüklenen videoları izlediğiniz zaman keyifli ve verimli bir bootcamp süreci geçiriyorsunuz. Sözlerimi toparlamam gerekirse veri mühendisliği ile ilgili konuları ilgi duyuyorsanız, eğitimde disiplinin önemli bir faktör olduğunu düşünüyorsanız ve zaman sizin için çok önemli bir kavramsa Veri Bilimi Okulu Data Engineering Bootcamp programını kesinlikle tavsiye ederim. Kendinize yapabileceğiniz çok güzel bir yatırım 🙂
